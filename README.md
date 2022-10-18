@@ -18,7 +18,7 @@ Mejora el ejercicio anterior agregando un acceso a una **Base de Datos** sencill
 	-  El nombre de usuario y su contraseña.
 	-  Información *opcional*: nombre, apellidos, fecha de nacimiento y correo electrónico.
 
-No olvides agregar la librería adecuada al proyecto para la gestión de la BD.
+No olvides agregar la **librería** adecuada al proyecto Ant para la gestión de la BD.
 
 
 ![](media/702a2963751b73f63199fb0a32c401ee.png)
