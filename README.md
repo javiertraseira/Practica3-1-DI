@@ -11,9 +11,9 @@ Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y s
 
 ## Parte 2
 
-Mejora el ejercicio anterior agregando un acceso a una **BD** sencilla que crees, para contener el nombre de los usuarios y sus contraseñas para realizar dicha verificación.
-- Puedes utilizar como motor de la Base de Datos Mysql o Derby.
--  Utiliza una **clase auxiliar** para crear los métodos necesarios para la BD (conectar, consultar, guardar..). Genera el código SQL necesario y gestiona los errores de conexión.
+Mejora el ejercicio anterior agregando un acceso a una **Base de Datos** sencilla que crees, para contener el nombre de los usuarios y sus contraseñas para realizar dicha verificación.
+- Puedes utilizar como motor de la Base de Datos *Mysql* o *Derby*.
+-  Utiliza una **clase auxiliar** para crear los métodos necesarios para la BD (conectar, consultar, guardar..). Genera el código *SQL* necesario y gestiona los errores de conexión.
 - Añade un botón para permitir crear **nuevos usuarios** desde la pantalla de *login*, que genere otra ventana para realizar dicha operación. En dicha ventana deberá requerirse la siguiente información:
 	-  El nombre de usuario y su contraseña.
 	-  Información *opcional*: nombre, apellidos, fecha de nacimiento y correo electrónico.
