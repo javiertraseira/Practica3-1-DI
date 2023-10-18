@@ -7,6 +7,9 @@ Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y s
 - En caso contrario deberá mostrar un mensaje indicando que el logueo no ha sido correcto y volver a solicitar las credenciales.
 - *Opcional*: Hacer que la ventana vibre brevemente en caso de que las credenciales sean incorrectas.
 
+> Nota: No olvides en tus proyectos agregar los ficheros jar precompilados.
+
+
 ![](media/05a6f0e7b87c4893f589def93ec7388d.png) ![](media/97e6f7691fc01c201777beb206893ea7.png)
 
 ## Parte 2
@@ -18,7 +21,8 @@ Mejora el ejercicio anterior agregando un acceso a una **Base de Datos** sencill
 	-  El nombre de usuario y su contraseña.
 	-  Información *opcional*: nombre, apellidos, fecha de nacimiento y correo electrónico.
 
-No olvides agregar la **librería** adecuada al proyecto *Ant* para la gestión de la BD.
+	
+> No olvides agregar la **librería** adecuada al proyecto *Ant* para la gestión de la BD.
 
 
 ![](media/702a2963751b73f63199fb0a32c401ee.png)
@@ -31,6 +35,6 @@ Mejorar la pantalla de **nuevo usuario** con los siguientes requerimientos:
 - Agregar un botón para poder tener un **calendario** para seleccionar la fecha de nacimiento. Para ello deberás hacer uso de la importación de una librería externa y usar *jcalendar1.4.jar* (*JDateChooser*)
 - El programa deberá verificar la creación de nuevos usuarios para evitar duplicados en la BD.
 
-Añade en la **pantalla principal** un nuevo botón que permita modificar la contraseña del usuario actualmente logueado.
+Añade en la **pantalla principal** otro nuevo botón que permita modificar la contraseña del usuario actualmente logueado.
 
 
