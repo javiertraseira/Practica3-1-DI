@@ -34,6 +34,7 @@ Mejorar la pantalla de **nuevo usuario** con los siguientes requerimientos:
 - **Validar** que los campos no estén vacíos o mal formados antes de continuar.
 - Agregar un botón para poder tener un **calendario** para seleccionar la fecha de nacimiento. Para ello deberás hacer uso de la importación de una librería externa y usar *jcalendar1.4.jar* (*JDateChooser*)
 - El programa deberá verificar la creación de nuevos usuarios para evitar duplicados en la BD.
+- La configuración de la base de datos deberá de leer de un fichero *config.properties* del disco.
 
 Añade en la **pantalla principal** otro nuevo botón que permita modificar la contraseña del usuario actualmente logueado.
 
