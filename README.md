@@ -1,6 +1,6 @@
 # Práctica 2.6 Pantalla de login
 
-Esta práctica sirve como base de varios de los contenidos mínimos que debe cumplir el primer proyecto trimestral evaluable del módulo de Desarrollo de Interfaces.
+Esta práctica sirve como base de varios de los contenidos mínimos que debe cumplir el primer **proyecto trimestral** evaluable del módulo de Desarrollo de Interfaces.
 
 ## Parte 1
 
