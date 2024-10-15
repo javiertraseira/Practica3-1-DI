@@ -15,25 +15,24 @@ Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y s
 ![](media/05a6f0e7b87c4893f589def93ec7388d.png) ![](media/97e6f7691fc01c201777beb206893ea7.png)
 
 ## Parte 2
+
 Agrega dos paquetes llamados *VistaControlador* y *Modelo* para organizar mejor las clases de tu aplicación.
 
 Mejora el ejercicio anterior agregando un acceso a una **Base de Datos** sencilla que crees mediante **JDBC**, para contener el nombre de los usuarios y sus contraseñas para realizar dicha verificación.
-- Puedes utilizar como motor de la Base de Datos *Mysql* o *Derby*.
-- Utiliza una **clase auxiliar** para crear los métodos necesarios para la BD (conectar, consultar, guardar..). Genera el código *SQL* necesario y gestiona los errores de conexión.
+- Puedes utilizar como motor de la Base de Datos *Mysql*, *MariaDB* o *Derby*.
+- Recuerda utilizar una **clase auxiliar** propia para crear los métodos necesarios para la BD (conectar, consultar, guardar..). Genera el código *SQL* necesario y gestiona los errores de conexión.
 - Añade un botón para permitir crear **nuevos usuarios** desde la pantalla de *login*, que genere otra ventana para realizar dicha operación. En dicha ventana deberá requerirse la siguiente información:
 	-  El nombre de usuario y su contraseña.
 	-  Información *opcional*: nombre, apellidos, fecha de nacimiento y correo electrónico.
 
-	
 > No olvides agregar la **librería** adecuada al proyecto *Ant* para la gestión de la BD.
 
-
 ![](media/702a2963751b73f63199fb0a32c401ee.png)
-
 
 ## Parte 3
 
 Mejorar la pantalla de **nuevo usuario** con los siguientes requerimientos:
+
 - **Validar** que los campos no estén vacíos o mal formados antes de continuar.
 - Agregar un botón para poder tener un **calendario** para seleccionar la fecha de nacimiento. Para ello deberás hacer uso de la importación de una librería externa y usar *jcalendar1.4.jar* (*JDateChooser*)
 - El programa deberá verificar la creación de nuevos usuarios para evitar duplicados en la BD.
@@ -56,6 +55,8 @@ Añade en la **pantalla principal** otro nuevo botón que permita **modificar la
 | 06             | Ventana principal                     | Se abre la ventana principal al validarse el usuario/contraseña | Se muestra el nombre del usuario logueado en la ventana | OK/No cumple|
 | 07             | Ventana crear nuevos usuarios                        | Hacer clic en el botón/enlace crear cuenta nueva   | Se abre una ventana de nuevos usuarios que tiene todos los campos principales y opcionales requeridos | OK/No cumple|
 | 08             | Estructura del proyecto                        | N/D   | Se utiliza la división por paquetes MVC; VistaControlador y Modelo para organizar las clases | OK/No cumple|
+| 09             | Comprobación fichero jar                        | Proyecto a empaquetar   | Se genera y prueba el fichero jar empaquetado | OK/No cumple|
+| 10             | Creación de branches                        | Parte 1 y parte 2   | Se crean al menos dos branches en el repositorio github | OK/No cumple|
 
 ### Parte 3
 
