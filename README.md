@@ -16,7 +16,7 @@ Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y s
 
 ## Parte 2
 
-Agrega dos paquetes llamados *VistaControlador* y *Modelo* para organizar mejor las clases de tu aplicación.
+No te olvides agregar los paquetes llamados *VistaControlador* y *Modelo* para organizar las funciones de las clases de tu aplicación.
 
 Mejora el ejercicio anterior agregando un acceso a una **Base de Datos** sencilla que crees mediante **JDBC**, para contener el nombre de los usuarios y sus contraseñas para realizar dicha verificación.
 - Puedes utilizar como motor de la Base de Datos *Mysql*, *MariaDB* o *Derby*.
