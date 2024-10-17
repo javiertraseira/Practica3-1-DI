@@ -13,12 +13,11 @@ Agrega y utiliza de forma correcta las clases en los paquetes *VistaControlador*
 
 > Nota: No olvides en tus proyectos agregar los ficheros jar precompilados.
 
-
 ![](media/05a6f0e7b87c4893f589def93ec7388d.png) ![](media/97e6f7691fc01c201777beb206893ea7.png)
 
 ## Parte 2
 
-Mejora el ejercicio anterior agregando un acceso a una **Base de Datos** sencilla que crees mediante **JDBC**, para contener el nombre de los usuarios y sus contraseñas para realizar dicha verificación.
+Mejora el ejercicio anterior agregando un acceso a una **Base de Datos** sencilla que conectes mediante **JDBC**, para contener el nombre de los usuarios y sus contraseñas para realizar dicha verificación.
 - Puedes utilizar como motor de la Base de Datos *Mysql*, *MariaDB* o *Derby*.
 - Recuerda utilizar una **clase auxiliar** propia para crear los métodos necesarios para la BD (conectar, consultar, guardar..). Genera el código *SQL* necesario y gestiona los errores de conexión.
 - Añade un botón para permitir crear **nuevos usuarios** desde la pantalla de *login*, que genere otra ventana para realizar dicha operación. En dicha ventana deberá requerirse la siguiente información:
@@ -63,7 +62,7 @@ Añade en la **pantalla principal** otro nuevo botón que permita **modificar la
 | ID Caso Prueba | Descripción Caso de Prueba                     | Entrada                                 | Salida Esperada                                                           | Resultado   |
 |----------------|-----------------------------------------------|-----------------------------------------|---------------------------------------------------------------------------|-------------|
 | 01             | Validaciones de los campos de la ventana nuevo usuario               | Texto de los diferentes campos     | Si falta texto en alguno de los campos obligatorios no podrá continuar                  | OK/No cumple|
-| 02             | Agregar un componente de calendario a través de una librería          | N/D     | Se muestra un calendario al hacer clic en su icono                      | OK/No cumple|
+| 02             | Agregar un componente de calendario a través de una librería JAR         | N/D     | Se muestra un calendario al hacer clic en su icono                      | OK/No cumple|
 | 03             | Verificación de duplicados en la BD                          | Agregar un nuevo usuario   | Se verifica que el nombre de usuario no exista ya en la BD | OK/No cumple|
 | 04             | Leer datos de la BD de un fichero llamado config.properties                          | N/D   | Se leen los datos de conexión de la BD de dicho fichero y no del código fuente | OK/No cumple|
 | 05             | Leer datos de la BD de un fichero llamado config.properties                          | N/D   | Se leen los datos de conexión de la BD de dicho fichero y no del código fuente | OK/No cumple|
