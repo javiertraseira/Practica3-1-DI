@@ -9,14 +9,14 @@ Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y s
 - En caso contrario deberá mostrar un mensaje indicando que el logueo no ha sido correcto y volver a solicitar las credenciales.
 - *Opcional*: Hacer que la ventana vibre brevemente en caso de que las credenciales sean incorrectas.
 
+Agrega y utiliza de forma correcta las clases en los paquetes *VistaControlador* y *Modelo* para organizar las funciones de las clases de tu aplicación.
+
 > Nota: No olvides en tus proyectos agregar los ficheros jar precompilados.
 
 
 ![](media/05a6f0e7b87c4893f589def93ec7388d.png) ![](media/97e6f7691fc01c201777beb206893ea7.png)
 
 ## Parte 2
-
-No te olvides agregar los paquetes llamados *VistaControlador* y *Modelo* para organizar las funciones de las clases de tu aplicación.
 
 Mejora el ejercicio anterior agregando un acceso a una **Base de Datos** sencilla que crees mediante **JDBC**, para contener el nombre de los usuarios y sus contraseñas para realizar dicha verificación.
 - Puedes utilizar como motor de la Base de Datos *Mysql*, *MariaDB* o *Derby*.
