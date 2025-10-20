@@ -30,33 +30,6 @@ Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacion
 
 ![](media/702a2963751b73f63199fb0a32c401ee.png)
 
-## Parte 3
-
-Mejorar la pantalla de **nuevo usuario** con los siguientes requerimientos:
-
-- **Validar** también que los campos opcionales no estén vacíos o mal formados antes de continuar.
-- Agregar un botón para poder tener un **calendario** para seleccionar la fecha de nacimiento. Para ello deberás hacer uso de la importación de una librería externa y usar *jcalendar1.4.jar* (*JDateChooser*)
-- Añade en la **pantalla principal** otro nuevo botón que permita **modificar la contraseña** del usuario que esté actualmente logueado.
-- El programa debería verificar la creación de nuevos usuarios para evitar duplicados en la BD.
-- La configuración de la base de datos deberá de leerse de un fichero `config.properties` en lugar de estar escrita dentro del código.
-
-Ejemplo de fichero `config.propierties`:
-```
-db.url=jdbc:mysql://localhost:3306/usuarios
-db.user=root
-db.password=1234
-```
-
-Ayúdate de la clase Propierties para leer ficheros de configuración:
-
-```java
-Properties propiedades = new Properties();
-propiedades.load(new FileReader("src/main/resources/config_derby.properties"));
-url_bd = propiedades.getProperty("url_bd");
-user = propiedades.getProperty("user");
-pwd = propiedades.getProperty("pwd");    
-```
-
 
 ## Pruebas (testing)
 
@@ -73,7 +46,6 @@ pwd = propiedades.getProperty("pwd");
 | 07             | Ventana crear nuevos usuarios                        | Hacer clic en el botón/enlace crear cuenta nueva   | Se abre una ventana de nuevos usuarios que tiene todos los campos principales y opcionales requeridos | OK/No cumple|
 | 08             | Validación del campos usuario y password ventana nuevos usuarios   | Escribir texto en los campos Usuario y Password     | Se validan los campos introducidos y la contraseña duplicada | OK/No cumple|
 | 09             | Estructura del proyecto                        | N/D   | Se utiliza la división por paquetes MVC; VistaControlador y Modelo para organizar las clases usando el modelo de objetos de forma apropiada | OK/No cumple|
-| 10             | Comprobación fichero `jar`                        | Proyecto a empaquetar   | Se genera y prueba el fichero `jar` empaquetado | OK/No cumple|
 | 11             | Creación de branches                        | Parte 1 y parte 2   | Se crean al menos dos branches en el repositorio github | OK/No cumple|
 
 ### Parte 3
