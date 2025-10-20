@@ -1,17 +1,15 @@
 # Práctica 2.6 Pantalla de login
 
-Esta práctica sirve como base de varios de los contenidos mínimos que debe cumplir el primer **proyecto trimestral** evaluable del módulo de Desarrollo de Interfaces.
+El objetivo de esta práctica es diseñar y desarrollar una interfaz gráfica funcional de inicio de sesión que integre aspectos fundamentales de la arquitectura Modelo–Vista–Controlador (MVC) y la conexión a bases de datos mediante JDBC. Además se trabajarán aspectos fundamentales de la usabilidad de una interfaz mediante la validación de sus campos.
 
 ## Parte 1
 
-Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y su contraseña; propón por el momento un listado de usuarios y contraseñas dentro del código (recuerda usar el modelo correctamente).
+Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y su contraseña; propón por el momento un listado de usuarios y contraseñas dentro del código (recuerda usar el `modelo` correctamente).
 - Si el usuario es correcto deberá crear una nueva ventana mostrando que te has logueado mostrando el nombre del usuario y un botón que permita cerrar sesión y volver a la pantalla de logueo inicial.
 - En caso contrario deberá mostrar un mensaje indicando que el logueo no ha sido correcto y volver a solicitar las credenciales.
 - *Opcional*: Hacer que la ventana vibre brevemente en caso de que las credenciales sean incorrectas.
 
 Agrega y utiliza de forma correcta las clases en los paquetes *VistaControlador* y *Modelo* para organizar las funciones de las clases de tu aplicación.
-
-> Nota: No olvides en tus proyectos agregar los ficheros jar precompilados.
 
 ![](media/05a6f0e7b87c4893f589def93ec7388d.png) ![](media/97e6f7691fc01c201777beb206893ea7.png)
 
