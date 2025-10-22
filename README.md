@@ -4,8 +4,8 @@ El objetivo de esta práctica es diseñar y desarrollar una interfaz gráfica fu
 
 ## Parte 1
 
-Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y su contraseña; propón por el momento un listado de usuarios y contraseñas dentro del código (recuerda usar el `modelo` y `vistacontrolador` adecuadamente.).
-- Si el usuario es correcto deberá crear una nueva ventana mostrando que te has logueado mostrando el nombre del usuario y un botón que permita cerrar sesión y volver a la pantalla de logueo inicial.
+Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y su contraseña; propón por el momento un listado de usuarios y contraseñas dentro del código (recuerda usar el `modelo` y `vistacontrolador` adecuadamente.)
+- Si el usuario es correcto, deberá crear una nueva ventana mostrando que te has logueado mostrando el nombre del usuario y un botón que permita cerrar sesión y volver a la pantalla de logueo inicial.
 - Agrégale un icono a tu aplicación.
 - En caso contrario deberá mostrar un mensaje indicando que el logueo no ha sido correcto y volver a solicitar las credenciales. 
 - Ten en cuenta criterios de **usabilidad** en todo momento. Utiliza *Tooptips* para los campos.
@@ -17,7 +17,7 @@ Agrega y utiliza de forma correcta las clases en los paquetes *VistaControlador*
 
 ## Parte 2
 
-Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacional** sencilla que conectes mediante **JDBC**, para contener el nombre de los usuarios y sus contraseñas para realizar dicha verificación.
+Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacional** sencilla que conectes mediante **JDBC**, y que contenga el nombre de los usuarios y sus contraseñas para realizar dicha verificación:
 - Puedes utilizar como motor de la Base de Datos *Mysql*, *MariaDB* o *Derby*.
 - Recuerda agregar la dependencia JDBC correspondiente en el fichero `pom.xml`.
 - Implementa una clase auxiliar de conexión (por ejemplo, `metodosbd`) dentro del paquete modelo, encargada de gestionar las operaciones básicas con la base de datos:
