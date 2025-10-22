@@ -18,7 +18,7 @@ Agrega y utiliza de forma correcta las clases en los paquetes *VistaControlador*
 
 Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacional** sencilla que conectes mediante **JDBC**, para contener el nombre de los usuarios y sus contraseñas para realizar dicha verificación.
 - Puedes utilizar como motor de la Base de Datos *Mysql*, *MariaDB* o *Derby*.
-- Recuerda agregar la dependencia JDBC correspondiente en el fichero pom.xml y comprobar que la conexión se establece correctamente desde Apache NetBeans. Puedes hacer pruebas también desde la pestaña servicios.
+- Recuerda agregar la dependencia JDBC correspondiente en el fichero `pom.xml`.
 - Implementa una clase auxiliar de conexión (por ejemplo, `metodosbd`) dentro del paquete modelo, encargada de gestionar las operaciones básicas con la base de datos:
 	- Conectar y desconectar la BD.
 	- Consultar la existencia de usuarios y contraseñas.
