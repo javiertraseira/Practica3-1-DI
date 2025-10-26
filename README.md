@@ -31,7 +31,7 @@ Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacion
 	-  **Nombre de usuario** y **contraseña**, aplicando **criterios de usabilidad**: campos claros, mensajes de ayuda y *Tooltips*, validaciones visuales (por ejemplo, colores o mensajes en línea de los campos).
 	-  Información *opcional*: nombre, apellidos, fecha de nacimiento y correo electrónico. Por el momento no deberán validarse.
 
-- Asegúrate de que el fichero `jar` resultante tiene incluídas todas las dependencias necesarias y puedes ejecutarse desde la línea de comandos. 
+- Asegúrate de que el fichero `jar` resultante tiene incluídas todas las dependencias necesarias y pueda ejecutarse desde la línea de comandos. 
 	- Edita para ello el fichero `pom.xml` para utilizar el *maven-jar-plugin* y el *maven-assembly-plugin* para las dependencias.
 
 ![](media/702a2963751b73f63199fb0a32c401ee.png)
