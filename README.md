@@ -31,6 +31,9 @@ Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacion
 	-  **Nombre de usuario** y **contraseña**, aplicando **criterios de usabilidad**: campos claros, mensajes de ayuda y *Tooltips*, validaciones visuales (por ejemplo, colores o mensajes en línea de los campos).
 	-  Información *opcional*: nombre, apellidos, fecha de nacimiento y correo electrónico. Por el momento no deberán validarse.
 
+- Asegúrate de que el fichero `jar` resultante tiene incluídas todas las dependencias necesarias y puedes ejecutarse desde la línea de comandos. 
+	- Edita para ello el fichero `pom.xml` para utilizar el *maven-jar-plugin* y el *maven-assembly-plugin* para las dependencias.
+
 ![](media/702a2963751b73f63199fb0a32c401ee.png)
 
 
@@ -49,7 +52,7 @@ Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacion
 | 07             | Ventana crear nuevos usuarios                        | Hacer clic en el botón/enlace crear cuenta nueva   | Se abre una ventana de nuevos usuarios que tiene todos los campos principales y opcionales requeridos | OK/No cumple|
 | 08             | Validación del campos usuario y password ventana nuevos usuarios   | Escribir texto en los campos Usuario y Password     | Se validan los campos introducidos y la contraseña duplicada | OK/No cumple|
 | 09             | Estructura del proyecto                        | N/D   | Se utiliza la división por paquetes MVC; VistaControlador y Modelo para organizar las clases usando el modelo de objetos de forma apropiada | OK/No cumple|
-| 10             | Comprobación fichero `jar`                        | Proyecto a empaquetar   | Se genera y prueba el fichero `jar` empaquetado | OK/No cumple|
+| 10             | Comprobación fichero `jar`                        | Proyecto a empaquetar   | Se genera y prueba el fichero `jar` empaquetado que funciona correctamente | OK/No cumple|
 | 11             | Creación de branches                        | Parte 1 y parte 2   | Se crean al menos dos branches en el repositorio github | OK/No cumple|
 
 
