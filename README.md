@@ -45,15 +45,21 @@ Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacion
 |----------------|-----------------------------------------------|-----------------------------------------|---------------------------------------------------------------------------|-------------|
 | 01             | Validaciones del botón "Loguear"               | Escribir texto en los campos Usuario y Password     | Si falta alguno de los campos no podrá continuar                  | OK/No cumple|
 | 02             | Comprobación del checkbox 'Mostrar'           | Marcar/desmarcar checkbox     | Se muestra o no la contraseña con asteriscos                      | OK/No cumple|
-| 03             | Conexión con la BD de datos                          | Iniciar una consulta desde la ventana   | Se conecta correctamente a la BD elegida | OK/No cumple|
-| 04             | Gestión básica de la conexión con la BD de datos                          | Iniciar una consulta desde la ventana   | Se muestran y gestionan errores de conexión con la BD | OK/No cumple|
-| 05             | Validación del campo usuario y password    | Escribir texto en los campos Usuario y Password     | Se valida en la BD que el usuario y contraseña existen | OK/No cumple|
-| 06             | Ventana principal                     | Se abre la ventana principal al validarse el usuario/contraseña | Se muestra el nombre del usuario logueado en la ventana | OK/No cumple|
-| 07             | Ventana crear nuevos usuarios                        | Hacer clic en el botón/enlace crear cuenta nueva   | Se abre una ventana de nuevos usuarios que tiene todos los campos principales y opcionales requeridos | OK/No cumple|
-| 08             | Validación del campos usuario y password ventana nuevos usuarios   | Escribir texto en los campos Usuario y Password     | Se validan los campos introducidos y la contraseña duplicada | OK/No cumple|
-| 09             | Estructura del proyecto                        | N/D   | Se utiliza la división por paquetes MVC; VistaControlador y Modelo para organizar las clases usando el modelo de objetos de forma apropiada | OK/No cumple|
-| 10             | Comprobación fichero `jar`                        | Proyecto a empaquetar   | Se genera y prueba el fichero `jar` empaquetado que funciona correctamente | OK/No cumple|
-| 11             | Creación de branches                        | Parte 1 y parte 2   | Se crean al menos dos branches en el repositorio github | OK/No cumple|
+| 03             | Intento de login con credenciales incorrectas  | Introducir usuario o contraseña no válidos                        | Se muestra un mensaje de error claro y comprensible, y se permite volver a intentar  | OK/No cumple |
+| 04             | Conexión con la BD de datos                          | Iniciar una consulta desde la ventana   | Se conecta correctamente a la BD elegida | OK/No cumple|
+| 05             | Gestión básica de la conexión con la BD de datos                          | Iniciar una consulta desde la ventana   | Se muestran y gestionan errores de conexión con la BD | OK/No cumple|
+| 06             | Validación del campo usuario y password    | Escribir texto en los campos Usuario y Password     | Se valida en la BD que el usuario y contraseña existen | OK/No cumple|
+| 07             | Ventana principal                     | Se abre la ventana principal al validarse el usuario/contraseña | Se muestra el nombre del usuario logueado en la ventana | OK/No cumple|
+| 08             | Ventana crear nuevos usuarios                        | Hacer clic en el botón/enlace crear cuenta nueva   | Se abre una ventana de nuevos usuarios que tiene todos los campos principales y opcionales requeridos | OK/No cumple|
+| 09             | Validación del campos usuario y password ventana nuevos usuarios   | Escribir texto en los campos Usuario y Password     | Se validan los campos introducidos y la contraseña duplicada | OK/No cumple|
+| 10             | Validación visual en el formulario de registro | Introducir valores incorrectos o vacíos en los campos de registro | Se muestran mensajes o colores indicando errores o confirmaciones visuales           | OK/No cumple |
+| 11             | Estructura del proyecto                        | N/D   | Se utiliza la división por paquetes del MVC; VistaControlador y Modelo para organizar las clases usando el modelo de objetos de forma apropiada | OK/No cumple|
+| 12             | Comprobación fichero `jar`                        | Proyecto a empaquetar   | Se genera y prueba el fichero `jar` empaquetado con todas sus dependencias que funciona correctamente | OK/No cumple|
+| 14             | Comprobación del icono de la aplicación        | Ejecutar la aplicación                                            | La aplicación muestra un icono personalizado en la barra de título o barra de tareas | OK/No cumple |
+| 15             | Cierre de sesión desde la ventana principal**    | Pulsar el botón "Cerrar sesión" en la ventana principal           | Se cierra la ventana principal y se regresa a la pantalla de login                   | OK/No cumple |
+| 16             | Verificación de Tooltips y mensajes de ayuda   | Colocar el puntero sobre los campos de texto y botones            | Se muestran Tooltips o mensajes explicativos en los campos correspondientes          | OK/No cumple |
+
+
 
 
 
