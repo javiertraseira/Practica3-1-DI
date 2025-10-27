@@ -58,6 +58,9 @@ Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacion
 | 14             | Comprobación del icono de la aplicación        | Ejecutar la aplicación                                            | La aplicación muestra un icono personalizado en la barra de título o barra de tareas | OK/No cumple |
 | 15             | Cierre de sesión desde la ventana principal    | Pulsar el botón "Cerrar sesión" en la ventana principal           | Se cierra la ventana principal y se regresa a la pantalla de login                   | OK/No cumple |
 | 16             | Verificación de Tooltips y mensajes de ayuda   | Colocar el puntero sobre los campos de texto y botones            | Se muestran Tooltips o mensajes explicativos en los campos correspondientes (usabilidad)         | OK/No cumple |
+| 17             | Usabilidad general: diseño, tamaño y legibilidad textos | Observar disposición interfaz y textos           | El tamaño de la fuente, contraste y la disposición de los elementos son adecuados para una lectura clara y accesible | OK/No cumple |
+
+
 
 
 
