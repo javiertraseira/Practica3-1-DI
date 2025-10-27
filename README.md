@@ -1,6 +1,6 @@
 # Práctica 3.1 Pantalla de login
 
-El objetivo de esta práctica es diseñar y desarrollar una interfaz gráfica funcional de inicio de sesión que integre aspectos fundamentales de la arquitectura Modelo–Vista–Controlador (MVC) y la conexión a bases de datos mediante JDBC. Además se trabajarán aspectos fundamentales de la usabilidad de una interfaz mediante la validación de sus campos.
+El objetivo de esta práctica es diseñar y desarrollar una interfaz gráfica funcional de inicio de sesión que integre aspectos fundamentales de la arquitectura Modelo–Vista–Controlador (MVC) y la conexión a una base de datos mediante JDBC. Además se trabajarán aspectos fundamentales de la usabilidad de una interfaz mediante la disposición y validación de sus campos.
 
 ## Parte 1
 
