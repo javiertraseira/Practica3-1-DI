@@ -55,10 +55,10 @@ Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacion
 | 10             | Validación visual en el formulario de registro | Introducir valores incorrectos o vacíos en los campos de registro | Se muestran mensajes o colores indicando errores o confirmaciones visuales en campos (usabilidad)           | OK/No cumple |
 | 11             | Estructura del proyecto                        | N/D   | Se utiliza la división por paquetes del MVC; VistaControlador y Modelo para organizar las clases usando el modelo de objetos de forma apropiada | OK/No cumple|
 | 12             | Comprobación fichero `jar`                        | Proyecto a empaquetar   | Se genera y prueba el fichero `jar` empaquetado con todas sus dependencias y que funciona correctamente | OK/No cumple|
-| 14             | Comprobación del icono de la aplicación        | Ejecutar la aplicación                                            | La aplicación muestra un icono personalizado en la barra de título o barra de tareas | OK/No cumple |
-| 15             | Cierre de sesión desde la ventana principal    | Pulsar el botón "Cerrar sesión" en la ventana principal           | Se cierra la ventana principal y se regresa a la pantalla de login                   | OK/No cumple |
-| 16             | Verificación de Tooltips y mensajes de ayuda   | Colocar el puntero sobre los campos de texto y botones            | Se muestran Tooltips o mensajes explicativos en los campos correspondientes (usabilidad)         | OK/No cumple |
-| 17             | Usabilidad general: diseño, tamaño y legibilidad textos | Observar disposición interfaz y textos           | El tamaño de la fuente, contraste y la disposición de los elementos son adecuados para una lectura clara y accesible | OK/No cumple |
+| 13             | Comprobación del icono de la aplicación        | Ejecutar la aplicación                                            | La aplicación muestra un icono personalizado en la barra de título o barra de tareas | OK/No cumple |
+| 14             | Cierre de sesión desde la ventana principal    | Pulsar el botón "Cerrar sesión" en la ventana principal           | Se cierra la ventana principal y se regresa a la pantalla de login                   | OK/No cumple |
+| 15             | Verificación de Tooltips y mensajes de ayuda   | Colocar el puntero sobre los campos de texto y botones            | Se muestran Tooltips o mensajes explicativos en los campos correspondientes (usabilidad)         | OK/No cumple |
+| 16             | Usabilidad general: diseño, tamaño y legibilidad textos | Observar disposición interfaz y textos           | El tamaño de la fuente, contraste y la disposición de los elementos son adecuados para una lectura clara y accesible | OK/No cumple |
 
 
 
