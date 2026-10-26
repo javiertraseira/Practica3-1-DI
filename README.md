@@ -1,8 +1,28 @@
-# Práctica 3.1 Pantalla de login
+# Práctica 3.1 Login, registro de usuarios y conexión a Aiven
 
-El objetivo de esta práctica es diseñar y desarrollar una interfaz gráfica funcional de inicio de sesión que integre aspectos fundamentales de la arquitectura Modelo–Vista–Controlador (MVC) y la conexión a una base de datos mediante JDBC. Además se trabajarán aspectos fundamentales de la usabilidad de una interfaz mediante la disposición y validación de sus campos.
+Diseña una aplicación Java Swing que permita crear una cuenta, iniciar sesión y cerrar sesión. Aplicarás los criterios de usabilidad de la **UT3.1** y la conexión mediante JDBC de la **UT3.2**, utilizando **MySQL en Aiven**.
 
-## Parte 1
+Continuarás con lo trabajado previamente: separación entre interfaz y lógica, Maven, FlatLaf, pruebas con **JUnit 4** y **AssertJ Swing**, documentación y uso de ramas.
+
+## Preparación del proyecto
+
+Crea un proyecto Maven de Apache NetBeans llamado `practica3-1` dentro de `SOL` del repositorio. Organiza las clases en los dos paquetes utilizados anteriormente:
+
+```text
+Modelo
+VistaControlador
+```
+
+Mantendremos esta separación básica; no se exige dividir la vista y el controlador en paquetes independientes.
+
+Utiliza las ramas `parte-1`, `parte-2` y `parte-3`. Realiza commits descriptivos e integra cada parte comprobada en `main`. Registra en Issues los errores que encuentres durante las pruebas y referencia su corrección en los commits.
+
+Añade mediante Maven las dependencias de FlatLaf, MySQL Connector/J y, con ámbito `test`, JUnit 4 y AssertJ Swing compatibles con lo utilizado en la práctica 2.4. No mezcles las anotaciones de JUnit 4 con las de JUnit Jupiter.
+
+Los componentes utilizados desde código tendrán nombres descriptivos. Asigna también un `name` a los que localizarás mediante AssertJ Swing: el nombre de la variable Java no asigna automáticamente esta propiedad.
+
+
+## Parte 1 Login con datos de prueba
 
 Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y su contraseña; propón por el momento un listado de usuarios y contraseñas dentro del código (recuerda usar el `modelo` y `vistacontrolador` adecuadamente.)
 - Si el usuario es correcto, deberá crear una nueva ventana mostrando que te has logueado mostrando el nombre del usuario y un botón que permita cerrar sesión y volver a la pantalla de logueo inicial.
