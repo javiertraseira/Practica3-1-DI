@@ -19,68 +19,150 @@ Utiliza las ramas `parte-1`, `parte-2` y `parte-3`. Realiza commits descriptivos
 
 Añade mediante Maven las dependencias de FlatLaf, MySQL Connector/J y, con ámbito `test`, JUnit 4 y AssertJ Swing compatibles con lo utilizado en la práctica 2.4. No mezcles las anotaciones de JUnit 4 con las de JUnit Jupiter.
 
-Los componentes utilizados desde código tendrán nombres descriptivos. Asigna también un `name` a los que localizarás mediante AssertJ Swing: el nombre de la variable Java no asigna automáticamente esta propiedad.
-
 
 ## Parte 1 Login con datos de prueba
 
-Crea una pantalla de **login** sencilla que solicite el nombre de un usuario y su contraseña; propón por el momento un listado de usuarios y contraseñas dentro del código (recuerda usar el `modelo` y `vistacontrolador` adecuadamente.)
-- Si el usuario es correcto, deberá crear una nueva ventana mostrando que te has logueado mostrando el nombre del usuario y un botón que permita cerrar sesión y volver a la pantalla de logueo inicial.
-- Agrégale un icono a tu aplicación.
-- En caso contrario deberá mostrar un mensaje indicando que el logueo no ha sido correcto y volver a solicitar las credenciales. 
-- Ten en cuenta criterios de **usabilidad** en todo momento. Utiliza *Tooptips* para los campos.
-- *Opcional*: Hacer que la ventana vibre brevemente en caso de que las credenciales sean incorrectas.
+Crea mediante el editor visual de NetBeans una ventana **login** sencilla que solicite el nombre de un usuario y su contraseña:
 
-Agrega y utiliza de forma correcta las clases en los paquetes *VistaControlador* y *Modelo* para organizar las funciones de las clases de tu aplicación.
+- usuario: `JTextField`.
+- contraseña: `JPasswordField`.
+- casilla **Mostrar contraseña**, desmarcada inicialmente.
+- botón **Iniciar sesión**.
+- botón o enlace **Crear cuenta**, cuya funcionalidad completarás en la parte 2.
+- una zona para mensajes de estado o validación.
+
+Configura FlatLaf antes de crear las ventanas y añade título e icono a la aplicación.
+
+Si las credenciales son correctas, abre una ventana principal que muestre el nombre del usuario y un botón **Cerrar sesión**. Evita dejar ventanas de login duplicadas. Al cerrar sesión, elimina la sesión y vuelve al login con la contraseña vacía y oculta.
+
+### Usabilidad básica
+
+- Asocia etiquetas claras a los campos y establece un orden de tabulación lógico.
+- Permite iniciar sesión con el botón y con la tecla Intro.
+- Añade ayudas breves cuando aporten información; las etiquetas deben seguir siendo comprensibles sin depender del tooltip.
+- No comuniques los errores únicamente mediante el color: añade texto.
+- Comprueba legibilidad, distribución y navegación con teclado.
 
 ![](media/05a6f0e7b87c4893f589def93ec7388d.png) ![](media/97e6f7691fc01c201777beb206893ea7.png)
 
-## Parte 2
+## Parte 2 Registro y persistencia en MySQL mediante Aiven
 
-Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacional** sencilla que conectes mediante **JDBC**, y que contenga el nombre de los usuarios y sus contraseñas para realizar dicha verificación:
-- Puedes utilizar como motor de la Base de Datos *Mysql*, *MariaDB* o *Derby*.
-- Recuerda agregar la dependencia JDBC correspondiente en el fichero `pom.xml`.
-- Implementa una clase auxiliar de conexión (por ejemplo, `metodosbd`) dentro del paquete modelo, encargada de gestionar las operaciones básicas con la base de datos:
-	- Conectar y desconectar la BD.
-	- Consultar la existencia de usuarios y contraseñas.
-	- Insertar nuevos registros.
-	- Controlar y mostrar los errores de conexión o SQL de forma comprensible para el usuario.
+Amplía el ejercicio anterior agregando un acceso a una **Base de Datos relacional** sencilla que conectes mediante JDBC, y que contenga el nombre de los usuarios y sus contraseñas para realizar dicha verificación:
+
+### Preparar la conexión en Aiven
+
+Utiliza un servicio **MySQL de Aiven** del entorno de prácticas. Sigue la preparación guiada de la UT3.2 para:
+
+1. Disponer del servicio y de una base de datos de prácticas llamada `usuarios`.
+2. Obten el **host y puerto reales** del servicio. 
+3. Incorporar MySQL Connector/J al proyecto mediante Maven.
+4. Comprueba mediante una consulta sencilla desde Java antes de integrar la conexión en las ventanas.
+
+Para esta entrega utiliza únicamente estas tres variables de entorno:
+
+| Variable | Contenido |
+|---|---|
+| `DI_BD_URL` | `jdbc:mysql://HOST_AIVEN:PUERTO_AIVEN/usuarios` |
+| `DI_BD_USUARIO` | Usuario de MySQL para la práctica. |
+| `DI_BD_CLAVE` | Contraseña de ese usuario. |
 
 
-- Añade en la pantalla de login un botón o enlace para *crear una cuenta nueva* que abra una segunda ventana destinada al registro de nuevos usuarios. En dicha ventana deberá requerirse la siguiente información:
-	-  **Nombre de usuario** y **contraseña**, aplicando **criterios de usabilidad**: campos claros, mensajes de ayuda y *Tooltips*, validaciones visuales (por ejemplo, colores o mensajes en línea de los campos).
+### Organización de la lógica
+
+Puedes utilizar esta distribución orientativa dentro de los paquetes existentes:
+
+| Clase en `Modelo` | Responsabilidad |
+|---|---|
+| `Usuario` | Representar los datos del usuario. |
+| `ConexionBD` | Leer la configuración y abrir conexiones de BBDD. |
+| `UsuarioDAO` | Comprobar o insertar usuarios mediante JDBC. |
+
+Las ventanas de `VistaControlador` recogerán datos, responderán a eventos y presentarán resultados. El modelo no mostrará `JOptionPane` ni accederá a componentes gráficos.
+
+Utiliza `PreparedStatement` para las consultas con datos del formulario y `try-with-resources` para cerrar conexiones, sentencias y resultados.
+
+### Registro de usuarios
+
+Desde **Crear cuenta**, abre una ventana para *crear una cuenta nueva* que abra una segunda ventana destinada al registro de nuevos usuarios. 
+
+En dicha ventana deberá requerirse la siguiente información:
+	-  **Nombre de usuario** y **contraseña**. Campos obligatorios y que deberán validarse.
 	-  Información *opcional*: nombre, apellidos, fecha de nacimiento y correo electrónico. Por el momento no deberán validarse.
 
-- Asegúrate de que el fichero `jar` resultante tiene incluídas todas las dependencias necesarias y pueda ejecutarse desde la línea de comandos. 
-	- Edita para ello el fichero `pom.xml` para utilizar el plugin *maven-assembly-plugin* para incorporar las dependencias.
+En esta práctica valida los obligatorios:
+
+- El usuario tendrá entre 3 y 30 caracteres y admitirá letras ASCII, números y guion bajo. Guarda el identificador sin espacios exteriores y en minúsculas, para que `Alumno1` y `alumno1` sean la misma cuenta.
+- La contraseña tendrá al menos 8 caracteres y deberá coincidir exactamente con su repetición. No impongas que coincida con el nombre de usuario ni la recortes con `trim()`.
+- No se podrá registrar un nombre de usuario ya existente. Además de la comprobación de la aplicación, aplica una restricción `UNIQUE` en la base de datos y gestiona el posible error de duplicado.
+
+No te olvides también de aplicar aquí **criterios de usabilidad**: campos claros, mensajes de ayuda y *Tooltips*, validaciones visuales (por ejemplo, colores o mensajes en línea de los campos).
 
 ![](media/702a2963751b73f63199fb0a32c401ee.png)
 
+### Empaquetado
 
-## Pruebas (testing)
+Configura `maven-assembly-plugin` en el `pom.xml` para generar un JAR ejecutable con las dependencias y la clase principal. 
 
-### Parte 1 y 2
+Desde NetBeans utiliza **Clean and Build**, comprueba `BUILD SUCCESS` y ejecuta el JAR desde una terminal. 
 
-| ID Caso Prueba | Descripción Caso de Prueba                     | Entrada                                 | Salida Esperada                                                           | Resultado   |
-|----------------|-----------------------------------------------|-----------------------------------------|---------------------------------------------------------------------------|-------------|
-| 01             | Validaciones del botón "Loguear"               | Escribir texto en los campos Usuario y Password     | Si falta alguno de los campos no podrá continuar                  | OK/No cumple|
-| 02             | Comprobación del checkbox 'Mostrar'           | Marcar/desmarcar checkbox     | Se muestra o no la contraseña con asteriscos                      | OK/No cumple|
-| 03             | Intento de login con credenciales incorrectas  | Introducir usuario o contraseña no válidos                        | Se muestra un mensaje de error claro y comprensible, y se permite volver a intentar  | OK/No cumple |
-| 04             | Conexión con la BD de datos                          | Iniciar una consulta desde la ventana   | Se conecta correctamente a la BD elegida | OK/No cumple|
-| 05             | Gestión básica de la conexión con la BD de datos                          | Iniciar una consulta desde la ventana   | Se muestran y gestionan errores de conexión con la BD | OK/No cumple|
-| 06             | Validación del campo usuario y password    | Escribir texto en los campos Usuario y Password     | Se valida en la BD que el usuario y contraseña existen | OK/No cumple|
-| 07             | Ventana principal                     | Se abre la ventana principal al validarse el usuario/contraseña | Se muestra el nombre del usuario logueado en la ventana | OK/No cumple|
-| 08             | Ventana crear nuevos usuarios                        | Hacer clic en el botón/enlace crear cuenta nueva   | Se abre una ventana de nuevos usuarios que tiene todos los campos principales y opcionales requeridos | OK/No cumple|
-| 09             | Validación del campos usuario y password ventana nuevos usuarios   | Escribir texto en los campos Usuario y Password     | Se validan los campos introducidos y la contraseña duplicada | OK/No cumple|
-| 10             | Validación visual en el formulario de registro | Introducir valores incorrectos o vacíos en los campos de registro | Se muestran mensajes o colores indicando errores o confirmaciones visuales en campos (usabilidad)           | OK/No cumple |
-| 11             | Estructura del proyecto                        | N/D   | Se utiliza la división por paquetes del MVC; VistaControlador y Modelo para organizar las clases usando el modelo de objetos de forma apropiada | OK/No cumple|
-| 12             | Comprobación fichero `jar`                        | Proyecto a empaquetar   | Se genera y prueba el fichero `jar` empaquetado con todas sus dependencias y que funciona correctamente | OK/No cumple|
-| 13             | Comprobación del icono de la aplicación        | Ejecutar la aplicación                                            | La aplicación muestra un icono personalizado en la barra de título o barra de tareas | OK/No cumple |
-| 14             | Cierre de sesión desde la ventana principal    | Pulsar el botón "Cerrar sesión" en la ventana principal           | Se cierra la ventana principal y se regresa a la pantalla de login                   | OK/No cumple |
-| 15             | Verificación de Tooltips y mensajes de ayuda   | Colocar el puntero sobre los campos de texto y botones            | Se muestran Tooltips o mensajes explicativos en los campos correspondientes (usabilidad)         | OK/No cumple |
-| 16             | Usabilidad general: diseño, tamaño y legibilidad textos | Observar disposición interfaz y textos           | El tamaño de la fuente, contraste y la disposición de los elementos son adecuados para una lectura clara y accesible | OK/No cumple |
+## Parte 3. Pruebas y documentación
 
+### Pruebas unitarias con JUnit 4
 
+Crea las clases de prueba en `Test Packages`, correspondientes a `src/test/java`. Estas pruebas se ejecutarán sin abrir ventanas ni conectarse a Internet.
+
+Implementa, como mínimo, cuatro casos independientes sobre la lógica de validación:
+
+1. Usuario vacío o formado solo por espacios: rechazado.
+2. Usuario válido con espacios exteriores y mayúsculas: normalizado correctamente.
+3. Contraseña de menos de 8 caracteres: rechazada en el registro.
+4. Contraseña y repetición diferentes: registro rechazado.
+
+Incluye entradas válidas e inválidas. Utiliza aserciones; imprimir un resultado en consola no comprueba automáticamente el comportamiento.
+
+En JUnit 4 utiliza `org.junit.Test`, `org.junit.Before` y `org.junit.After` cuando proceda, y métodos de prueba `public void`. Mantén las dependencias de pruebas con ámbito `test`.
+
+### Comprobaciones de integración y pruebas manuales
+
+Las pruebas anteriores no demuestran que JDBC funcione. Comprueba también el recorrido real contra Aiven: registrar una cuenta ficticia, cerrar la aplicación, volver a abrirla e iniciar sesión con esa cuenta.
+
+Crea `TEST/casos-prueba.md` y completa esta tabla con el resultado real, la fecha y una referencia a la evidencia. Los casos de integración pueden realizarse manualmente; su automatización es una ampliación opcional.
+
+| ID | Caso de prueba | Entrada / Acción | Resultado esperado | Resultado |
+|---|---|---|---|---|
+| U01–U04 | Validaciones unitarias | Ejecutar los cuatro casos indicados | Todas las aserciones pasan sin Aiven | Pendiente |
+| G01 | Login vacío | Ejecutar el caso de AssertJ Swing | Mensaje y foco correctos; no se abre la principal | Pendiente |
+| I01 | Conexión JDBC | Ejecutar `SELECT 1` con la URL y credenciales de Aiven | La consulta devuelve 1 | Pendiente |
+| I02 | Persistencia y login | Registrar una cuenta ficticia y reiniciar la aplicación | La cuenta persiste y permite entrar | Pendiente |
+| I03 | Credenciales incorrectas | Contraseña errónea o usuario inexistente | Mensaje de credenciales incorrectas; permite reintentar | Pendiente |
+| I04 | Usuario duplicado | Registrar dos veces el mismo identificador, cambiando mayúsculas | No se crea un segundo registro | Pendiente |
+| I05 | Error de conexión | Usar temporalmente una configuración de prueba con puerto incorrecto | Muestra un mensaje comprensible cuando falla la conexión | Pendiente |
+| M01 | Mostrar contraseña | Marcar y desmarcar la casilla | Alterna visibilidad; inicialmente está oculta | Pendiente |
+| M02 | Registro y opcionales | Abrir registro y dejar vacíos los opcionales | Se muestran los campos y el registro válido puede completarse | Pendiente |
+| M03 | Navegación y mensajes | Utilizar Tab e Intro; provocar errores | Orden lógico, foco útil, ayudas y errores comprensibles | Pendiente |
+| M04 | Sesión | Entrar y cerrar sesión | Saludo correcto, sin ventanas duplicadas; vuelve al login limpio | Pendiente |
+| M05 | Aplicación distribuida | Ejecutar el JAR fuera de NetBeans con su configuración | Icono, dependencias y acceso a Aiven funcionan | Pendiente |
+
+### Documentación y entrega
+
+En `docs/index.md` incluye descripción, funcionalidades, capturas, responsabilidades de los paquetes, preparación de Aiven, nombres de las tres variables de entorno —sin sus valores secretos—, ejecución del JAR y ejecución de pruebas. Documenta con Javadoc las clases principales del modelo y al menos dos de sus métodos.
+
+Añade al README un enlace a la documentación y al informe de pruebas. Si mantienes GitHub Pages de las prácticas previas, comprueba su publicación.
+
+Antes de entregar:
+
+- [ ] Maven, FlatLaf y los paquetes siguen la organización trabajada.
+- [ ] Login, registro y cierre de sesión funcionan con MySQL de Aiven.
+- [ ] La conexión utiliza el host y puerto reales de Aiven y las credenciales configuradas.
+- [ ] Los datos de conexión están centralizados en las variables de clase de `ConexionBD`.
+- [ ] La versión publicada del código, las capturas y la documentación utilizan valores de ejemplo para las credenciales.
+- [ ] Se validan los obligatorios, se admiten opcionales vacíos y se evitan duplicados.
+- [ ] Las conexiones, sentencias y resultados JDBC se cierran correctamente.
+- [ ] Pasan los cuatro casos unitarios y al menos un caso de AssertJ Swing.
+- [ ] Se han ejecutado y documentado las comprobaciones reales con Aiven.
+- [ ] Se ha realizado la revisión de usabilidad y registrado sus conclusiones.
+- [ ] El JAR se ejecuta fuera de NetBeans y la documentación permite reproducirlo.
+- [ ] Las ramas están integradas en `main` y las incidencias quedan identificadas.
 
 
 
