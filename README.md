@@ -58,13 +58,6 @@ Utiliza un servicio **MySQL de Aiven** del entorno de prácticas. Sigue la prepa
 3. Incorporar MySQL Connector/J al proyecto mediante Maven.
 4. Comprueba mediante una consulta sencilla desde Java antes de integrar la conexión en las ventanas.
 
-Para esta entrega utiliza únicamente estas tres variables de entorno:
-
-| Variable | Contenido |
-|---|---|
-| `DI_BD_URL` | `jdbc:mysql://HOST_AIVEN:PUERTO_AIVEN/usuarios` |
-| `DI_BD_USUARIO` | Usuario de MySQL para la práctica. |
-| `DI_BD_CLAVE` | Contraseña de ese usuario. |
 
 
 ### Organización de la lógica
