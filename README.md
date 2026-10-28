@@ -124,7 +124,36 @@ No te olvides también de aplicar aquí **criterios de usabilidad**: campos clar
 
 ### Empaquetado
 
-Configura `maven-assembly-plugin` en el `pom.xml` para generar un JAR ejecutable con las dependencias y la clase principal. 
+Configura `maven-assembly-plugin` en el `pom.xml` para generar un JAR ejecutable con las dependencias y la clase principal. Para ello se ha de crear un nuevo apartado <build> y agregar dentro dependencias:
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <version>3.7.1</version>
+    <configuration>
+        <archive>
+            <manifest>
+                <mainClass>com.ejemplo.Main</mainClass>
+            </manifest>
+        </archive>
+        <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+    </configuration>
+    <executions>
+        <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+                <goal>single</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+No te olvides de sustituir *com.ejemplo.Main* por el nombre completo de la clase principal de tu aplicación, incluyendo su paquete.
 
 Desde NetBeans utiliza **Clean and Build**, comprueba `BUILD SUCCESS` y ejecuta el JAR desde una terminal. 
 
