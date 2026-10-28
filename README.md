@@ -32,7 +32,12 @@ Crea mediante el editor visual de NetBeans una ventana **login** sencilla que so
 - Enlace a **Crear cuenta**, cuya funcionalidad completarás en la parte 2.
 - Una zona para mensajes de estado o validación.
 
-Configura *FlatLaf* antes de crear las ventanas y añade un título e **icono** propio a la aplicación.
+Configura *FlatLaf* antes de crear las ventanas y añade un título e **icono** propio a la aplicación, así como en las ventanas que creas conveniente: 
+- El repositorio proporciona una carpeta *Icons* con imágenes que puedes utilizar en la aplicación.
+- Copia las imágenes que quieras utilizar dentro de los recursos del proyecto Maven, en la ruta: `src\main\resources\icons\`
+- Para iconos *SVG* puedes utilizar FlatSVGIcon, añadiendo la dependencia de FlatLaf Extras.  
+
+Para esta primera parte se utilizarán **cuentas y credenciales ficticias** almacenadas en memoria dentro del modelo.
 
 Si las credenciales son correctas, se abrirá una **ventana principal** que muestre el nombre del usuario y un botón **Cerrar sesión**. Evita dejar ventanas de login duplicadas. Al cerrar sesión, elimina la sesión y vuelve al login con la contraseña vacía y oculta.
 
@@ -43,6 +48,7 @@ Si las credenciales son correctas, se abrirá una **ventana principal** que mues
 - Añade ayudas breves cuando aporten información; las etiquetas deben seguir siendo comprensibles sin depender del tooltip.
 - No comuniques los errores únicamente mediante el color: añade texto.
 - Comprueba legibilidad, distribución y navegación con teclado.
+- De forma opcional, puedes hacer que la ventana vibre brevemente cuando las credenciales sean incorrectas.
 
 ![](media/05a6f0e7b87c4893f589def93ec7388d.png) ![](media/97e6f7691fc01c201777beb206893ea7.png)
 
@@ -82,7 +88,12 @@ Desde **Crear cuenta**, se debe abrir una ventana para el registro de nuevos usu
 
 En dicha ventana deberá requerirse la siguiente información:
 -  **Nombre de usuario** y **contraseña**. Campos obligatorios y que **deberán validarse**.
--  Información **opcional**: nombre, apellidos, fecha de nacimiento y correo electrónico. Estos campos por el momento **no deberán validarse**.
+-  Otro campo de **repetición de contraseña** que deberá de validar si coincide con la primera.
+-  Información **opcional**: *nombre*, *apellidos*, *fecha de nacimiento* y *correo electrónico*. Estos campos por el momento **no deberán validarse**.
+
+Respecto el campo fecha:
+- Utiliza un `JFormattedTextField` para introducir la fecha. Desde NetBeans has de configurar el formato de entrada usando *formatterFactory* (dd/MM/YY). 
+- Para guardarla puedes convertirla a `java.sql.Date`. Si usas una cadena intermedia, emplea yyyy-MM-dd.
 
 Para los campos que deben validarse:
 - El usuario tendrá entre 3 y 30 caracteres y admitirá letras ASCII, números y guion bajo. Guarda el identificador sin espacios exteriores y en minúsculas, para que `Alumno1` y `alumno1` sean la misma cuenta.
@@ -139,7 +150,7 @@ Crea `TEST/casos-prueba.md` y completa esta tabla con el resultado real, la fech
 
 ### Documentación y entrega
 
-En `docs/index.md` incluye descripción, funcionalidades, capturas, responsabilidades de los paquetes, preparación de Aiven, nombres de las tres variables de entorno —sin sus valores secretos—, ejecución del JAR y ejecución de pruebas. Documenta con Javadoc las clases principales del modelo y al menos dos de sus métodos.
+En `docs/index.md` incluye descripción, funcionalidades, capturas, responsabilidades de los paquetes, preparación de Aiven, valores del url accedido —sin sus valores secretos—, ejecución del JAR y ejecución de pruebas. Documenta con Javadoc las clases principales del modelo y al menos dos de sus métodos.
 
 Añade al README un enlace a la documentación y al informe de pruebas. Si mantienes GitHub Pages de las prácticas previas, comprueba su publicación.
 
