@@ -44,7 +44,7 @@ Si las credenciales son correctas, se abrirá una **ventana principal** que mues
 ### Usabilidad básica
 
 - Asocia etiquetas claras a los campos y establece un orden de tabulación lógico.
-- Permite iniciar sesión con el botón y con la tecla Intro.
+- Permite iniciar sesión con el botón y con la tecla **Intro**.
 - Añade ayudas breves cuando aporten información; las etiquetas deben seguir siendo comprensibles sin depender del tooltip.
 - No comuniques los errores únicamente mediante el color: añade texto.
 - Comprueba legibilidad, distribución y navegación con teclado.
