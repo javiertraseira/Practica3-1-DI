@@ -114,39 +114,83 @@ Desde NetBeans utiliza **Clean and Build**, comprueba `BUILD SUCCESS` y ejecuta 
 
 ### Pruebas unitarias con JUnit 4
 
+Añade las dependecias necesarias a tu fichero `pom.xml`.
+
 Crea las clases de prueba en `Test Packages`, correspondientes a `src/test/java`. Estas pruebas se ejecutarán sin abrir ventanas ni conectarse a Internet.
 
 Implementa, como mínimo, cuatro casos independientes sobre la lógica de validación:
 
-1. Usuario vacío o formado solo por espacios: rechazado.
-2. Usuario válido con espacios exteriores y mayúsculas: normalizado correctamente.
-3. Contraseña de menos de 8 caracteres: rechazada en el registro.
-4. Contraseña y repetición diferentes: registro rechazado.
+| Caso | Comprobación |
+|---|---|
+| Usuario vacío o formado solo por espacios | Se devuelve un error de validación. |
+| Usuario con espacios exteriores y mayúsculas | Se obtiene el identificador normalizado. |
+| Contraseña de menos de ocho caracteres | Se rechaza al registrar una cuenta. |
+| Contraseña y repetición diferentes | Se devuelve un error de validación. |
 
-Incluye entradas válidas e inválidas. Utiliza aserciones; imprimir un resultado en consola no comprueba automáticamente el comportamiento.
+Incluye entradas válidas e inválidas. Utiliza aserciones; imprimir un resultado en consola no comprueba automáticamente el comportamiento. Si los métodos devuelven un mensaje cuando existe un error y null cuando el dato es válido, puedes utilizar `assertNotNull()` y `assertNull()`.
 
 En JUnit 4 utiliza `org.junit.Test`, `org.junit.Before` y `org.junit.After` cuando proceda, y métodos de prueba `public void`. Mantén las dependencias de pruebas con ámbito `test`.
+
+
+### Prueba con AssertJ Swing
+
+La prueba deberá:
+
+1. Abrir la ventana de login.
+2. Dejar vacíos usuario y contraseña.
+3. Pulsar Iniciar sesión.
+4. Comprobar el mensaje de campo obligatorio.
+5. Cerrar el mensaje y comprobar que el foco vuelve al campo usuario.
+6. Comprobar que el login continúa visible y no se ha abierto la ventana principal.
+
+Si presentas el error en una etiqueta en lugar de un diálogo, comprueba el texto de esa etiqueta mediante su fixture.
+
+Este caso debe funcionar **sin conexión** a Aiven, porque los datos se validan antes de consultar la base de datos. El constructor del formulario tampoco debe abrir conexiones.
 
 ### Comprobaciones de integración y pruebas manuales
 
 Las pruebas anteriores no demuestran que JDBC funcione. Comprueba también el recorrido real contra Aiven: registrar una cuenta ficticia, cerrar la aplicación, volver a abrirla e iniciar sesión con esa cuenta.
 
-Crea `TEST/casos-prueba.md` y completa esta tabla con el resultado real, la fecha y una referencia a la evidencia. Los casos de integración pueden realizarse manualmente; su automatización es una ampliación opcional.
+Crea `TEST/casos-prueba.md` y registra los resultados de la siguiente tabla.
+
+Los casos **U** y **G** corresponden a las pruebas automatizadas anteriores. Los casos **I** y **M** pueden ejecutarse manualmente.
 
 | ID | Caso de prueba | Entrada / Acción | Resultado esperado | Resultado |
 |---|---|---|---|---|
-| U01–U04 | Validaciones unitarias | Ejecutar los cuatro casos indicados | Todas las aserciones pasan sin Aiven | Pendiente |
-| G01 | Login vacío | Ejecutar el caso de AssertJ Swing | Mensaje y foco correctos; no se abre la principal | Pendiente |
-| I01 | Conexión JDBC | Ejecutar `SELECT 1` con la URL y credenciales de Aiven | La consulta devuelve 1 | Pendiente |
-| I02 | Persistencia y login | Registrar una cuenta ficticia y reiniciar la aplicación | La cuenta persiste y permite entrar | Pendiente |
-| I03 | Credenciales incorrectas | Contraseña errónea o usuario inexistente | Mensaje de credenciales incorrectas; permite reintentar | Pendiente |
-| I04 | Usuario duplicado | Registrar dos veces el mismo identificador, cambiando mayúsculas | No se crea un segundo registro | Pendiente |
-| I05 | Error de conexión | Usar temporalmente una configuración de prueba con puerto incorrecto | Muestra un mensaje comprensible cuando falla la conexión | Pendiente |
-| M01 | Mostrar contraseña | Marcar y desmarcar la casilla | Alterna visibilidad; inicialmente está oculta | Pendiente |
-| M02 | Registro y opcionales | Abrir registro y dejar vacíos los opcionales | Se muestran los campos y el registro válido puede completarse | Pendiente |
-| M03 | Navegación y mensajes | Utilizar Tab e Intro; provocar errores | Orden lógico, foco útil, ayudas y errores comprensibles | Pendiente |
-| M04 | Sesión | Entrar y cerrar sesión | Saludo correcto, sin ventanas duplicadas; vuelve al login limpio | Pendiente |
-| M05 | Aplicación distribuida | Ejecutar el JAR fuera de NetBeans con su configuración | Icono, dependencias y acceso a Aiven funcionan | Pendiente |
+| U01 | Usuario obligatorio | Ejecutar la prueba con usuario vacío y con espacios | El validador devuelve un error | Pendiente |
+| U02 | Normalización | Ejecutar la prueba con `  ALUMNO1  ` | Se obtiene `alumno1` | Pendiente |
+| U03 | Longitud de contraseña | Probar siete y ocho caracteres en el registro | Rechaza siete y acepta ocho | Pendiente |
+| U04 | Repetición de contraseña | Probar contraseñas diferentes y coincidentes | Rechaza las diferentes y acepta las coincidentes | Pendiente |
+| G01 | Login vacío | Ejecutar `LoginTest` | Mensaje correcto, foco en usuario y principal cerrada | Pendiente |
+| I01 | Conexión JDBC | Ejecutar `SELECT 1` desde Java | La consulta devuelve 1 | Pendiente |
+| I02 | Registro y persistencia | Registrar una cuenta ficticia, reiniciar e iniciar sesión | La cuenta permanece y permite acceder | Pendiente |
+| I03 | Credenciales incorrectas | Introducir usuario inexistente o contraseña errónea | Mensaje comprensible y posibilidad de reintentar | Pendiente |
+| I04 | Usuario duplicado | Registrar dos veces el mismo nombre, cambiando mayúsculas | No se crea una segunda cuenta | Pendiente |
+| I05 | Error de conexión | Probar temporalmente un puerto incorrecto en una copia de prueba | Muestra un error de conexión, sin confundirlo con credenciales incorrectas | Pendiente |
+| I06 | Error SQL | Probar temporalmente una consulta con una tabla inexistente | El logger conserva el detalle y la ventana muestra un mensaje comprensible | Pendiente |
+| I07 | Persistencia de opcionales | Registrar una cuenta con algunos datos opcionales y comprobar la BBDD | Los datos se guardan asociados al usuario correcto | Pendiente |
+| M01 | Contraseña obligatoria | Introducir un usuario válido y dejar la contraseña vacía | Mensaje de campo obligatorio y foco en contraseña | Pendiente |
+| M02 | Usuario mal formado | Registrar un usuario demasiado corto o con caracteres no admitidos | Mensaje de validación y foco en el campo usuario | Pendiente |
+| M03 | Contraseña de registro | Introducir menos de ocho caracteres | No permite registrar y explica la longitud mínima | Pendiente |
+| M04 | Confirmación incorrecta | Introducir contraseñas diferentes en el registro | No permite continuar y señala la confirmación | Pendiente |
+| M05 | Mostrar contraseña | Utilizar la casilla o el botón de revelado de FlatLaf | Permite mostrarla y ocultarla; inicialmente está oculta | Pendiente |
+| M06 | Opcionales vacíos | Registrar dejando vacíos nombre, apellidos, fecha y correo | El registro puede completarse | Pendiente |
+| M07 | Fecha informada | Introducir una fecha válida con el formato configurado | Se interpreta y guarda correctamente | Pendiente |
+| M08 | Fecha incorrecta | Introducir un texto que no pueda interpretarse como fecha | Muestra un mensaje, no guarda y devuelve el foco al campo | Pendiente |
+| M09 | Navegación por teclado | Recorrer campos con Tab e iniciar sesión con Intro | Orden lógico y acciones accesibles | Pendiente |
+| M10 | Volver desde el registro | Abrir Crear cuenta y volver al login | Se recupera una ventana visible sin duplicados | Pendiente |
+| M11 | Finalizar el registro | Crear una cuenta correctamente | Muestra confirmación y permite continuar desde una ventana visible | Pendiente |
+| M12 | Cerrar sesión | Acceder y pulsar Cerrar sesión | Vuelve al login con contraseña vacía y oculta | Pendiente |
+| M13 | Recursos y empaquetado | Ejecutar el JAR con dependencias fuera de NetBeans | Iconos, imágenes y funcionalidades siguen disponibles | Pendiente |
+| M14 | Ayudas y legibilidad | Revisar etiquetas, tooltips, contraste y mensajes | Los controles y mensajes son comprensibles | Pendiente |
+| O01 | Vibración opcional | Introducir credenciales incorrectas, si se ha implementado | Vibración breve acompañada de mensaje; permite reintentar | Pendiente |
+
+Sustituye `Pendiente` por:
+
+- **OK:** se obtiene el resultado esperado.
+- **No cumple:** existe un fallo.
+- **No ejecutado:** no se ha realizado la prueba.
+- **No aplica:** únicamente para la ampliación opcional no implementada.
 
 ### Documentación y entrega
 
@@ -157,15 +201,18 @@ Añade al README un enlace a la documentación y al informe de pruebas. Si manti
 Antes de entregar:
 
 - [ ] Maven, FlatLaf y los paquetes siguen la organización trabajada.
-- [ ] Login, registro y cierre de sesión funcionan con MySQL de Aiven.
+- [ ] El código respeta la separación Modelo–VistaControlador.
+- [ ] Login, registro y cierre de sesión funcionan con Aiven.
+- [ ] Las reglas de validación están en `ValidadorUsuario`.
 - [ ] La conexión utiliza el host y puerto reales de Aiven y las credenciales configuradas.
 - [ ] Los datos de conexión están centralizados en las variables de clase de `ConexionBD`.
+- [ ] Los campos opcionales pueden quedar vacíos y los informados se guardan.
 - [ ] La versión publicada del código, las capturas y la documentación utilizan valores de ejemplo para las credenciales.
 - [ ] Se validan los obligatorios, se admiten opcionales vacíos y se evitan duplicados.
 - [ ] Las conexiones, sentencias y resultados JDBC se cierran correctamente.
-- [ ] Pasan los cuatro casos unitarios y al menos un caso de AssertJ Swing.
+- [ ] Pasan los cuatro casos unitarios y al menos una prueba con AssertJ Swing.
 - [ ] Se han ejecutado y documentado las comprobaciones reales con Aiven.
-- [ ] Se ha realizado la revisión de usabilidad y registrado sus conclusiones.
+- [ ] Se ha realizado la revisión de usabilidad según los requerimientos y registrado sus conclusiones.
 - [ ] El JAR se ejecuta fuera de NetBeans y la documentación permite reproducirlo.
 - [ ] Las ramas están integradas en `main` y las incidencias quedan identificadas.
 
