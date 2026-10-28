@@ -67,9 +67,10 @@ Debes de utilizar la distribución *Modelo-VistaControlador*, y utilizar esta di
 
 | Clases | Responsabilidad |
 |---|---|
-| `Usuario` | Representar los datos del usuario. |
-| `ConexionBD` | Leer la configuración y abrir conexiones de BBDD. |
-| `UsuarioDAO` | Comprobar o insertar usuarios mediante JDBC. |
+| `Usuario` | Representar los datos del usuario (identificador, nombre de usuario y demás atributos) |
+| `ConexionBD` | Centralizar la URL, el usuario y la contraseña en variables de clase y abrir conexiones. |
+| `GestionUsuariosBD` | Consultar usuarios, comprobar credenciales e insertar nuevos registros mediante JDBC. |
+| `ValidadorUsuario` | Normalizar y validar los datos recibidos, sin utilizar Swing ni acceder a la base de datos. |
 
 Las ventanas en *VistaControlador* recogerán datos, responderán a eventos y presentarán resultados. El *Modelo* no mostrará `JOptionPane` ni accederá a componentes gráficos.
 
