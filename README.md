@@ -69,7 +69,7 @@ En esta primera práctica utilizaremos la **conexión JDBC básica**, sin config
 
 ### Modelo de datos
 
-La aplicación utilizará una base de datos con dos tablas:
+Se recomienda utilizar una base de datos con dos tablas:
 
 - **usuarios**: almacenará las credenciales necesarias para identificar al usuario.
   - Identificador
@@ -177,7 +177,6 @@ Implementa, como mínimo, cuatro casos independientes sobre la lógica de valida
 Incluye entradas válidas e inválidas. Utiliza aserciones; imprimir un resultado en consola no comprueba automáticamente el comportamiento. Si los métodos devuelven un mensaje cuando existe un error y null cuando el dato es válido, puedes utilizar `assertNotNull()` y `assertNull()`.
 
 En JUnit 4 utiliza `org.junit.Test`, `org.junit.Before` y `org.junit.After` cuando proceda, y métodos de prueba `public void`. Mantén las dependencias de pruebas con ámbito `test`.
-
 
 ### Prueba con AssertJ Swing
 
