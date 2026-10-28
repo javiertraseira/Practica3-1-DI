@@ -24,16 +24,15 @@ Añade mediante Maven las dependencias de FlatLaf, MySQL Connector/J y, con ámb
 
 Crea mediante el editor visual de NetBeans una ventana **login** sencilla que solicite el nombre de un usuario y su contraseña:
 
-- usuario: `JTextField`.
-- contraseña: `JPasswordField`.
-- casilla **Mostrar contraseña**, desmarcada inicialmente.
-- botón **Iniciar sesión**.
-- botón o enlace **Crear cuenta**, cuya funcionalidad completarás en la parte 2.
-- una zona para mensajes de estado o validación.
+- Usuario: `JTextField` y Contraseña: `JPasswordField`.
+- Casilla **Mostrar contraseña** o que use la propiedad `showRevealButton` desmarcados inicialmente.
+- Botón **Iniciar sesión**.
+- Enlace a **Crear cuenta**, cuya funcionalidad completarás en la parte 2.
+- Una zona para mensajes de estado o validación.
 
-Configura FlatLaf antes de crear las ventanas y añade título e icono a la aplicación.
+Configura *FlatLaf* antes de crear las ventanas y añade un título e **icono** propio a la aplicación.
 
-Si las credenciales son correctas, abre una ventana principal que muestre el nombre del usuario y un botón **Cerrar sesión**. Evita dejar ventanas de login duplicadas. Al cerrar sesión, elimina la sesión y vuelve al login con la contraseña vacía y oculta.
+Si las credenciales son correctas, se abrirá una **ventana principal** que muestre el nombre del usuario y un botón **Cerrar sesión**. Evita dejar ventanas de login duplicadas. Al cerrar sesión, elimina la sesión y vuelve al login con la contraseña vacía y oculta.
 
 ### Usabilidad básica
 
@@ -55,38 +54,37 @@ Utiliza un servicio **MySQL de Aiven** del entorno de prácticas. Sigue la prepa
 
 1. Disponer del servicio y de una base de datos de prácticas llamada `usuarios`.
 2. Obten el **host y puerto reales** del servicio. 
-3. Incorporar MySQL Connector/J al proyecto mediante Maven.
-4. Comprueba mediante una consulta sencilla desde Java antes de integrar la conexión en las ventanas.
+3. Incorpora *MySQL Connector/J* al proyecto mediante Maven.
+4. Se recomienda crear una clase de pruebas sencilla para probar la conexión y una consulta sencilla antes de integrarlo en la aplicación.
 
-
+En esta primera práctica utilizaremos la **conexión JDBC básica**, sin configurar opciones TLS ni verificar expresamente la identidad del servidor.
 
 ### Organización de la lógica
 
-Puedes utilizar esta distribución orientativa dentro de los paquetes existentes:
+Debes de utilizar la distribución *Modelo-VistaControlador*, y utilizar esta distribución orientativa dentro de los paquetes existentes:
 
-| Clase en `Modelo` | Responsabilidad |
+| Clases | Responsabilidad |
 |---|---|
 | `Usuario` | Representar los datos del usuario. |
 | `ConexionBD` | Leer la configuración y abrir conexiones de BBDD. |
 | `UsuarioDAO` | Comprobar o insertar usuarios mediante JDBC. |
 
-Las ventanas de `VistaControlador` recogerán datos, responderán a eventos y presentarán resultados. El modelo no mostrará `JOptionPane` ni accederá a componentes gráficos.
+Las ventanas en *VistaControlador* recogerán datos, responderán a eventos y presentarán resultados. El *Modelo* no mostrará `JOptionPane` ni accederá a componentes gráficos.
 
 Utiliza `PreparedStatement` para las consultas con datos del formulario y `try-with-resources` para cerrar conexiones, sentencias y resultados.
 
-### Registro de usuarios
+### Ventana crear cuenta
 
-Desde **Crear cuenta**, abre una ventana para *crear una cuenta nueva* que abra una segunda ventana destinada al registro de nuevos usuarios. 
+Desde **Crear cuenta**, se debe abrir una ventana para el registro de nuevos usuarios. 
 
 En dicha ventana deberá requerirse la siguiente información:
-	-  **Nombre de usuario** y **contraseña**. Campos obligatorios y que deberán validarse.
-	-  Información *opcional*: nombre, apellidos, fecha de nacimiento y correo electrónico. Por el momento no deberán validarse.
+-  **Nombre de usuario** y **contraseña**. Campos obligatorios y que **deberán validarse**.
+-  Información **opcional**: nombre, apellidos, fecha de nacimiento y correo electrónico. Estos campos por el momento **no deberán validarse**.
 
-En esta práctica valida los obligatorios:
-
+Para los campos que deben validarse:
 - El usuario tendrá entre 3 y 30 caracteres y admitirá letras ASCII, números y guion bajo. Guarda el identificador sin espacios exteriores y en minúsculas, para que `Alumno1` y `alumno1` sean la misma cuenta.
-- La contraseña tendrá al menos 8 caracteres y deberá coincidir exactamente con su repetición. No impongas que coincida con el nombre de usuario ni la recortes con `trim()`.
-- No se podrá registrar un nombre de usuario ya existente. Además de la comprobación de la aplicación, aplica una restricción `UNIQUE` en la base de datos y gestiona el posible error de duplicado.
+- La contraseña tendrá al menos 8 caracteres y deberá coincidir exactamente con su repetición.
+- No se podrá registrar un nombre de usuario ya existente.  
 
 No te olvides también de aplicar aquí **criterios de usabilidad**: campos claros, mensajes de ayuda y *Tooltips*, validaciones visuales (por ejemplo, colores o mensajes en línea de los campos).
 
