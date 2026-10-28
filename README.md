@@ -87,6 +87,8 @@ Cada registro de **info** estará asociado a un usuario existente mediante su id
 
 ### Organización de la lógica
 
+Una vez implementada la conexión JDBC, deberás sustituir la comprobación de las credenciales ficticias por consultas a la base de datos creada anteriormente.
+
 Debes de utilizar la distribución *Modelo-VistaControlador*, y utilizar esta distribución orientativa dentro de los paquetes existentes:
 
 | Clases | Responsabilidad |
@@ -124,7 +126,7 @@ No te olvides también de aplicar aquí **criterios de usabilidad**: campos clar
 
 ### Empaquetado
 
-Configura `maven-assembly-plugin` en el `pom.xml` para generar un JAR ejecutable con las dependencias y la clase principal. Para ello se ha de crear un nuevo apartado <build> y agregar dentro dependencias:
+Añade maven-assembly-plugin dentro de <build><plugins> en el archivo pom.xml. Si estas secciones ya existen, reutilízalas. 
 
 ```xml
 <plugin>
@@ -203,33 +205,29 @@ Los casos **U** y **G** corresponden a las pruebas automatizadas anteriores. Los
 
 | ID | Caso de prueba | Entrada / Acción | Resultado esperado | Resultado |
 |---|---|---|---|---|
-| U01 | Usuario obligatorio | Ejecutar la prueba con usuario vacío y con espacios | El validador devuelve un error | Pendiente |
-| U02 | Normalización | Ejecutar la prueba con `  ALUMNO1  ` | Se obtiene `alumno1` | Pendiente |
-| U03 | Longitud de contraseña | Probar siete y ocho caracteres en el registro | Rechaza siete y acepta ocho | Pendiente |
-| U04 | Repetición de contraseña | Probar contraseñas diferentes y coincidentes | Rechaza las diferentes y acepta las coincidentes | Pendiente |
-| G01 | Login vacío | Ejecutar `LoginTest` | Mensaje correcto, foco en usuario y principal cerrada | Pendiente |
-| I01 | Conexión JDBC | Ejecutar `SELECT 1` desde Java | La consulta devuelve 1 | Pendiente |
-| I02 | Registro y persistencia | Registrar una cuenta ficticia, reiniciar e iniciar sesión | La cuenta permanece y permite acceder | Pendiente |
-| I03 | Credenciales incorrectas | Introducir usuario inexistente o contraseña errónea | Mensaje comprensible y posibilidad de reintentar | Pendiente |
-| I04 | Usuario duplicado | Registrar dos veces el mismo nombre, cambiando mayúsculas | No se crea una segunda cuenta | Pendiente |
-| I05 | Error de conexión | Probar temporalmente un puerto incorrecto en una copia de prueba | Muestra un error de conexión, sin confundirlo con credenciales incorrectas | Pendiente |
-| I06 | Error SQL | Probar temporalmente una consulta con una tabla inexistente | El logger conserva el detalle y la ventana muestra un mensaje comprensible | Pendiente |
-| I07 | Persistencia de opcionales | Registrar una cuenta con algunos datos opcionales y comprobar la BBDD | Los datos se guardan asociados al usuario correcto | Pendiente |
-| M01 | Contraseña obligatoria | Introducir un usuario válido y dejar la contraseña vacía | Mensaje de campo obligatorio y foco en contraseña | Pendiente |
-| M02 | Usuario mal formado | Registrar un usuario demasiado corto o con caracteres no admitidos | Mensaje de validación y foco en el campo usuario | Pendiente |
-| M03 | Contraseña de registro | Introducir menos de ocho caracteres | No permite registrar y explica la longitud mínima | Pendiente |
-| M04 | Confirmación incorrecta | Introducir contraseñas diferentes en el registro | No permite continuar y señala la confirmación | Pendiente |
-| M05 | Mostrar contraseña | Utilizar la casilla o el botón de revelado de FlatLaf | Permite mostrarla y ocultarla; inicialmente está oculta | Pendiente |
-| M06 | Opcionales vacíos | Registrar dejando vacíos nombre, apellidos, fecha y correo | El registro puede completarse | Pendiente |
-| M07 | Fecha informada | Introducir una fecha válida con el formato configurado | Se interpreta y guarda correctamente | Pendiente |
-| M08 | Fecha incorrecta | Introducir un texto que no pueda interpretarse como fecha | Muestra un mensaje, no guarda y devuelve el foco al campo | Pendiente |
-| M09 | Navegación por teclado | Recorrer campos con Tab e iniciar sesión con Intro | Orden lógico y acciones accesibles | Pendiente |
-| M10 | Volver desde el registro | Abrir Crear cuenta y volver al login | Se recupera una ventana visible sin duplicados | Pendiente |
-| M11 | Finalizar el registro | Crear una cuenta correctamente | Muestra confirmación y permite continuar desde una ventana visible | Pendiente |
-| M12 | Cerrar sesión | Acceder y pulsar Cerrar sesión | Vuelve al login con contraseña vacía y oculta | Pendiente |
-| M13 | Recursos y empaquetado | Ejecutar el JAR con dependencias fuera de NetBeans | Iconos, imágenes y funcionalidades siguen disponibles | Pendiente |
-| M14 | Ayudas y legibilidad | Revisar etiquetas, tooltips, contraste y mensajes | Los controles y mensajes son comprensibles | Pendiente |
-| O01 | Vibración opcional | Introducir credenciales incorrectas, si se ha implementado | Vibración breve acompañada de mensaje; permite reintentar | Pendiente |
+| **Pruebas unitarias (JUnit 4)** | | | | |
+| U01 | Usuario obligatorio | Usuario vacío o solo espacios | Devuelve un error de validación | Pendiente |
+| U02 | Normalización | Introducir `  ALUMNO1  ` | Devuelve `alumno1` | Pendiente |
+| U03 | Longitud de contraseña | Probar 7 y 8 caracteres | Rechaza 7 y acepta 8 | Pendiente |
+| U04 | Confirmación | Introducir contraseñas distintas | Devuelve un error de validación | Pendiente |
+| **Prueba gráfica (AssertJ Swing)** | | | | |
+| G01 | Login vacío | Iniciar sesión sin introducir datos | Mensaje de error, foco en usuario y login visible | Pendiente |
+| **Pruebas de integración (JDBC y Aiven)** | | | | |
+| I01 | Conexión JDBC | Realizar una consulta sencilla | La conexión y la consulta funcionan | Pendiente |
+| I02 | Registro y persistencia | Registrar un usuario, reiniciar e iniciar sesión | El usuario permanece almacenado y puede acceder | Pendiente |
+| I03 | Credenciales incorrectas | Introducir usuario inexistente o contraseña incorrecta | Informa del error y permite reintentar | Pendiente |
+| I04 | Usuario duplicado | Registrar dos veces el mismo nombre, variando mayúsculas | Impide crear la segunda cuenta | Pendiente |
+| I05 | Datos opcionales | Registrar un usuario con información adicional | Se almacena asociada al usuario correcto | Pendiente |
+| I06 | Error de conexión | Simular un fallo de conexión a Aiven | Muestra un mensaje comprensible sin cerrar la aplicación | Pendiente |
+| **Pruebas manuales de interfaz** | | | | |
+| M01 | Campos obligatorios del login | Dejar la contraseña vacía | Muestra un mensaje de campo obligatorio | Pendiente |
+| M02 | Validaciones del registro | Introducir usuario inválido, contraseña corta o confirmación distinta | Identifica los errores e impide registrar | Pendiente |
+| M03 | Mostrar contraseña | Activar y desactivar la opción | Permite mostrarla y ocultarla correctamente | Pendiente |
+| M04 | Campos opcionales vacíos | Registrar sin introducir información adicional | Permite completar el registro | Pendiente |
+| M05 | Fecha de nacimiento | Introducir una fecha válida y otra incorrecta | Guarda la válida y rechaza la incorrecta | Pendiente |
+| M06 | Navegación | Utilizar Tab, Intro y volver del registro al login | Navegación correcta y sin ventanas duplicadas | Pendiente |
+| M07 | Cierre de sesión | Iniciar sesión y pulsar Cerrar sesión | Regresa al login con la contraseña vacía y oculta | Pendiente |
+| M08 | Empaquetado | Ejecutar el JAR fuera de NetBeans | La interfaz, los iconos y las funcionalidades siguen funcionando | Pendiente |
 
 Sustituye `Pendiente` por:
 
