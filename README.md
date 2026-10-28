@@ -67,6 +67,24 @@ Utiliza un servicio **MySQL de Aiven** del entorno de prácticas. Sigue la prepa
 
 En esta primera práctica utilizaremos la **conexión JDBC básica**, sin configurar opciones TLS ni verificar expresamente la identidad del servidor.
 
+### Modelo de datos
+
+La aplicación utilizará una base de datos con dos tablas:
+
+- **usuarios**: almacenará las credenciales necesarias para identificar al usuario.
+  - Identificador
+  - Nombre de usuario
+  - Contraseña
+
+- **info**: almacenará información adicional asociada al usuario.
+  - Identificador del usuario
+  - Nombre
+  - Apellidos
+  - Fecha
+  - Correo electrónico
+
+Cada registro de **info** estará asociado a un usuario existente mediante su identificador. La información adicional será opcional, por lo que puede existir un usuario que todavía no tenga datos asociados en esta tabla.
+
 ### Organización de la lógica
 
 Debes de utilizar la distribución *Modelo-VistaControlador*, y utilizar esta distribución orientativa dentro de los paquetes existentes:
