@@ -6,7 +6,9 @@ Continuarás con lo trabajado previamente: separación entre interfaz y lógica,
 
 ## Preparación del proyecto
 
-Crea un proyecto Maven de Apache NetBeans llamado `practica3-1` dentro de `SOL` del repositorio. Organiza las clases en los dos paquetes utilizados anteriormente:
+Crea un proyecto Maven de Apache NetBeans llamado `practica3-1` dentro de `SOL` del repositorio. Utiliza la versión de *Java 21* LTS en tu proyecto.
+
+ Organiza las clases en los dos paquetes utilizados anteriormente:
 
 ```text
 Modelo
